@@ -1,0 +1,16 @@
+name: "Close non-bug issues"
+
+on:
+  schedule:
+    - cron: "15 * * * * "
+
+jobs:
+  close_invalid_issues:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v3
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          close-issue-message: 'This issue was closed because it is off topic, please ask on the FreeRADIUS users list instead: https://freeradius.org/support/'
+          days-before-close: 0
+          any-of-labels: "other"
